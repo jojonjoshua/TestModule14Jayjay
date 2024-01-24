@@ -11,10 +11,10 @@ import java.time.Duration;
 public class LoginTest {
 
     @Test
-    public void loginTest() {
+    public void loginTest() throws InterruptedException {
         WebDriver driver = WebDriverManager.chromedriver().create();
         LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);    //*[@id="item_4_title_link"]/div
+        HomePage homePage = new HomePage(driver);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://www.saucedemo.com/");
@@ -23,5 +23,6 @@ public class LoginTest {
         loginPage.inputPassword("secret_sauce");
         loginPage.clickLoginButton();
         homePage.validateBackPackDisplayed();
+        Thread.sleep(3000);
     }
 }
